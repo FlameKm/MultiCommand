@@ -1,9 +1,9 @@
 # MultiCommand-flamekm
-多命令
-可用于单片机裸机编程中,将发送的命令进入查找,从而实现对应的函数。
+多命令，可用于单片机裸机编程中,将发送的命令进入查找,从而实现对应的函数。
 
 使用方法
-添加
+
+//添加
 MultiCommand comm;
 void dst(uint8_t id, char *s) {
     std::cout << (int)id << " " << s <<std::endl;
