@@ -17,8 +17,8 @@ struct Command_t {
 class MultiCommand {
 public:
     MultiCommand();
-    void add(const char *sign, uint8_t id, CommandCallback_t callback);
-    void search(char *str);
+    bool add(const char *sign,  CommandCallback_t callback, uint8_t id = -1);
+    bool search(char *str);
     bool isEqual(const char *ch, char *str);
 private:
     Command_t *command;
