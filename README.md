@@ -6,6 +6,7 @@
 更方便的接收上位机的命令，从而进行对应的处理。
 
 使用方法
+C++
 
 //添加
 MultiCommand comm;
@@ -23,9 +24,13 @@ int main() {
     comm.search((char*)"msg3c");
     comm.search((char*)"msg4d");
 }
-
 返回数值
 1 a
 2 b
 3 c
 4 d
+
+C
+类似C++
+multiCommandInit(&comm);
+comm.add(&comm,"msg1", 1, dst);
