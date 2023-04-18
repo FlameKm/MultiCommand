@@ -10,20 +10,21 @@ C++
 
 //添加
 MultiCommand comm;
-void dst(uint8_t id, char *s) {
+void callback(uint8_t id, char *s) {
     std::cout << (int)id << " " << s <<std::endl;
 }
 int main() {
-    comm.add("msg1", 1, dst);
-    comm.add("msg2", 2, dst);
-    comm.add("msg3", 3, dst);
-    comm.add("msg4", 4, dst);
+    comm.add("msg1", callback,1);
+    comm.add("msg2", callback,2);
+    comm.add("msg3", callback,3);
+    comm.add("msg4", callback,4);
 
     comm.search((char*)"msg1a");
     comm.search((char*)"msg2b");
     comm.search((char*)"msg3c");
     comm.search((char*)"msg4d");
 }
+
 返回数值
 1 a
 2 b
@@ -32,5 +33,9 @@ int main() {
 
 C
 类似C++
+
 multiCommandInit(&comm);
-comm.add(&comm,"msg1", 1, dst);
+comm.add(&comm,"msg1", callback, 1);
+comm.search(&comm,"msg1a");
+
+查找到会进入回调函数
