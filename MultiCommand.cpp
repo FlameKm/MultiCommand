@@ -17,8 +17,10 @@ MultiCommand::MultiCommand() { command = nullptr; }
 bool MultiCommand::add(const char *sign, CommandCallback_t callback,
                        uint8_t id) {
   Command_t *p = command;
-  char *ch = (char *)malloc(sizeof(sign));
-  strcpy(ch, sign);
+  int len = (int)strlen(sign);
+  char *sign_t = (char *) malloc(strlen(sign) + 1);
+  memcpy(sign_t, sign, len);
+  sign_t[len] = 0;
   //! 检查是否重复或者不符合要求,即当前的信号前部分包含sign
   for (; p != nullptr; p = p->next) {
     if (isEqual(sign, (char *)p->sign)) {
@@ -27,7 +29,7 @@ bool MultiCommand::add(const char *sign, CommandCallback_t callback,
   }
 
   auto *newCommand = new Command_t();
-  newCommand->sign = sign;
+  newCommand->sign = sign_t;
   newCommand->id = id;
   newCommand->callback = callback;
   newCommand->next = command;
